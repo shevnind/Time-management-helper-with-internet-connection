@@ -1,7 +1,7 @@
 import argparse
 import asyncio
 
-from src.server.database import login_user, register_user, run_database, add_problem, get_problems, delete_problem
+from database import login_user, register_user, run_database, add_problem, get_problems, delete_problem
 
 async def communicate(reader, writer):
     print("Client connected")

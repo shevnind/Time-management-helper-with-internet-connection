@@ -1,0 +1,5 @@
+PyQt6==6.7.0
+PyQt6_sip==13.6.0
+SQLAlchemy==2.0.30
+aiosqlite==0.20.0
+pyqt-tools==1.0.0
