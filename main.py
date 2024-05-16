@@ -1,15 +1,16 @@
+import argparse
 import sys
 
 from PyQt6.QtWidgets import QApplication, QLabel, QMainWindow, QPushButton
 
-from src.login_registration import RegistrationOrLogin
-from src.add_problem import AddProblem
-from src.helper_functions import create_widget
-from src.matrix import Matrix
-from src.print_by_dates import List
-from src.constants import WINDOW_SIZE_X, WINDOW_SIZE_Y, MAIN_START_X, MAIN_START_Y, MAIN_WIDTH
-from src.constants import MAIN_HEIGHT, LINE_X, LINE_Y, LINE_WIDTH
-from src.client import connect
+from src.client.login_registration import RegistrationOrLogin
+from src.client.add_problem import AddProblem
+from src.client.helper_functions import create_widget
+from src.client.matrix import Matrix
+from src.client.print_by_dates import List
+from src.client.constants import WINDOW_SIZE_X, WINDOW_SIZE_Y, MAIN_START_X, MAIN_START_Y, MAIN_WIDTH
+from src.client.constants import MAIN_HEIGHT, LINE_X, LINE_Y, LINE_WIDTH
+from src.client.client import connect
 
 login = "admin"
 
@@ -17,7 +18,7 @@ class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
 
-        connect()
+        connect(HOST, PORT)
 
         self.setup_ui()
         self.log_reg = RegistrationOrLogin(self)
@@ -70,6 +71,13 @@ class MainWindow(QMainWindow):
         self.list.clear()
         self.matrix.clear()
 
+parser = argparse.ArgumentParser()
+parser.add_argument("host", help="ip-адрес сети")
+parser.add_argument("port", help="порт")
+
+args = parser.parse_args()
+HOST = args.host
+PORT = args.port
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)

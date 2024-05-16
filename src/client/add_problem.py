@@ -4,9 +4,9 @@ import json
 from PyQt6.QtGui import QFont
 from PyQt6.QtWidgets import QCheckBox, QDateTimeEdit, QLabel, QLineEdit, QPushButton, QTextEdit
 
-from src.helper_functions import create_widget
-from src.client import write_to_server, read_from_server
-from src.constants import HIDE, D_HIDE, START_X, TEXT_START_Y, WIDTH, TEXT_HEIGHT, TEXT_D_Y, INDENT
+from src.client.helper_functions import create_widget
+from src.client.client import write_to_server, read_from_server
+from src.client.constants import HIDE, D_HIDE, START_X, TEXT_START_Y, WIDTH, TEXT_HEIGHT, TEXT_D_Y, INDENT
 
 
 class DateTimeEncoder(json.JSONEncoder):
@@ -130,8 +130,7 @@ class AddProblem():
         self.new_problem.deadline = self.deadline.dateTime().toPyDateTime()
 
         if self.new_problem.name != "":
-            write_to_server("add problem  " + self.login + "  " +
-                            json.dumps(self.new_problem.__dict__, cls=DateTimeEncoder) + '\n')
+            write_to_server(f"add problem  {self.login}  {json.dumps(self.new_problem.__dict__, cls=DateTimeEncoder)}\n")
             print(read_from_server())
             self.clear()
             self.hide_buttons()

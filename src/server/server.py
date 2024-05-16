@@ -1,9 +1,7 @@
+import argparse
 import asyncio
 
-from src.database import login_user, register_user, run_database, add_problem, get_problems, delete_problem
-
-HOST = "127.0.0.1"
-PORT = 12345
+from src.server.database import login_user, register_user, run_database, add_problem, get_problems, delete_problem
 
 async def communicate(reader, writer):
     print("Client connected")
@@ -40,5 +38,14 @@ async def main():
     async with server:
         print('Server running...')
         await server.serve_forever()
+
+
+parser = argparse.ArgumentParser()
+parser.add_argument("host", help="ip-адрес сети")
+parser.add_argument("port", help="порт")
+
+args = parser.parse_args()
+HOST = args.host
+PORT = args.port
 
 asyncio.run(main())

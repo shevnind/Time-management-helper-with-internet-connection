@@ -1,10 +1,10 @@
 from PyQt6.QtWidgets import QLabel, QLineEdit, QPushButton
 
-from src.helper_functions import create_widget
-from src.constants import HIDE, D_HIDE, TEXT_HEIGHT, TEXT_D_Y, LOGIN_WIDTH, D_X, ALL_LEN, WRONG_START_Y, \
+from src.client.helper_functions import create_widget
+from src.client.constants import HIDE, D_HIDE, TEXT_HEIGHT, TEXT_D_Y, LOGIN_WIDTH, D_X, ALL_LEN, WRONG_START_Y, \
                             LOGIN_START_Y, LOGIN_START_X, LOGIN_BUTTON_LEN, REGISTRATION_BUTTON_LEN, OR_LEN, \
                             WRONG_LOGIN_START_Y, WRONG_PASSWORD_START_Y, MAIN_START_Y, MAIN_START_X
-from src.client import write_to_server, read_from_server
+from src.client.client import write_to_server, read_from_server
 
 class RegistrationOrLogin():
     def __init__(self, main_window):
@@ -91,7 +91,7 @@ class RegistrationOrLogin():
             return
         message = "login  " if self.autorisation_title.text() == "Вход" else "register  "
         login = self.login.text()
-        message += login + "  " + self.password.text() + '\n'
+        message += f"{login}  {self.password.text()}\n"
         write_to_server(message)
         helper = read_from_server()
         message = helper[:-1]

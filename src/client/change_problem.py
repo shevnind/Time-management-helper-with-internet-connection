@@ -1,9 +1,9 @@
 from PyQt6.QtWidgets import QPushButton
 
-from src.add_problem import AddProblem
-from src.helper_functions import create_widget
-from src.constants import HIDE, D_HIDE, START_X, LAST_Y, TEXT_HEIGHT, WIDTH
-from src.client import write_to_server, read_from_server
+from src.client.add_problem import AddProblem
+from src.client.helper_functions import create_widget
+from src.client.constants import HIDE, D_HIDE, START_X, LAST_Y, TEXT_HEIGHT, WIDTH
+from src.client.client import write_to_server, read_from_server
 
 class ChangeProblem(AddProblem):
     def __init__(self, main_window, login):
@@ -16,7 +16,7 @@ class ChangeProblem(AddProblem):
         self.hide_all_buttons()
 
     def erase_problem(self):
-        write_to_server("delete problem  " + self.login + "  " + str(self.index) + '\n')
+        write_to_server(f"delete problem  {self.login}  {str(self.index)}\n")
         print(read_from_server())
     def mark_as_done(self):
         self.erase_problem()

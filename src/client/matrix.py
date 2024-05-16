@@ -1,8 +1,8 @@
 from PyQt6.QtWidgets import QLabel, QPushButton
 
-from src.show_problems import ShowProblems
-from src.helper_functions import create_widget
-from src.constants import HIDE, D_HIDE, D_X, BLOCK_SIZE, LINE_WIDTH, LEN_EMER, LEN_NOT_EMER
+from src.client.show_problems import ShowProblems
+from src.client.helper_functions import create_widget
+from src.client.constants import HIDE, D_HIDE, D_X, BLOCK_SIZE, LINE_WIDTH, LEN_EMER, LEN_NOT_EMER
 
 class Matrix(ShowProblems):
     def __init__(self, main_window, login):

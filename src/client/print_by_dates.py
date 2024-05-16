@@ -2,8 +2,8 @@ import datetime
 
 from PyQt6.QtWidgets import QLabel, QPushButton
 
-from src.show_problems import ShowProblems
-from src.helper_functions import create_widget
+from src.client.show_problems import ShowProblems
+from src.client.helper_functions import create_widget
 
 class List(ShowProblems):
     def __init__(self, main_window, login):

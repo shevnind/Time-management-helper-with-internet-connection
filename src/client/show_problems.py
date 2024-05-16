@@ -4,11 +4,11 @@ import json
 from PyQt6.QtGui import QFont
 from PyQt6.QtWidgets import QApplication, QDateTimeEdit, QLabel, QPushButton
 
-from src.add_problem import Problem
-from src.change_problem import ChangeProblem
-from src.helper_functions import create_widget
-from src.constants import HIDE, D_HIDE, START_X, PROBLEM_HEIGHT, WIDTH, PROBLEM_D_Y, LEN1, LEN2, LEN3, LEN4, INDENT
-from src.client import write_to_server, read_from_server
+from src.client.add_problem import Problem
+from src.client.change_problem import ChangeProblem
+from src.client.helper_functions import create_widget
+from src.client.constants import HIDE, D_HIDE, START_X, PROBLEM_HEIGHT, WIDTH, PROBLEM_D_Y, LEN1, LEN2, LEN3, LEN4, INDENT
+from src.client.client import write_to_server, read_from_server
 
 class ShowProblems():
     def __init__(self, main_window, login):
@@ -74,7 +74,7 @@ class ShowProblems():
 
     def get_problems(self):
         self.problems = []
-        write_to_server("get problems  " + self.login + '\n')
+        write_to_server(f"get problems  {self.login}\n")
         text_problems = str(read_from_server())[:-1]
         if not text_problems:
             return
